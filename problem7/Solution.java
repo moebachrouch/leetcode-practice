@@ -1,35 +1,32 @@
 class Solution {
     public int reverse(int x) {
         
-        // We first find the power of the number that we
-        // are trying to reverse. For example, for 123
-        // We will find 3 and eventually we will subtract 1
-        long test = x;
-        long powerCtr = 0;
-        while (test != 0) {
-            // We keep dividing until we reach 0
-            test /= 10;
-            powerCtr++;
-        }
-        
         // Here we store the result
         long res = 0;
-        while (powerCtr != 0) {
+        while (x != 0) {
             // We extract the least significant digit each time
             // Example: 123 % 10 will yield 3 on the first iteration
             long rem = x % 10;
+            x = x / 10;
 
-            // We add the least significant digit multiplied
-            // by the decreasing power of 10, and add it to the result
-            // Example: 123 will yield res = 0 + 3*10^2 on the first iteration,
-            // which is 300. On the second iteration we will get 320, and on
-            // the final iteration we obtain 321
-            res = res + rem * (long)Math.pow(10, powerCtr - 1);
+            // We add the remainder to the resulting number. At the same time,
+            // we multiply the resulting number by 10 before we add the remainder.
+            // That way, we avoid the previous problem of having to count the "order"
+            // or "power" of the digit that we are trying to reverse. Here, we simply
+            // keep multiplying the result by 10, then add the remainder to it until
+            // x becomes 0. This will automatically result in a number of the desired
+            // order. Example:
+            // 120 will yield:
+            // 0 * 10 + 0
+            // 0 * 10 + 2
+            // 2 * 10 + 1
+            // which is 021, or simply 21 which is what we want.
+            // We are iteratively increasing the order of the result, the number of times
+            // that we are reducing x until we reach 0.
+            res = res * 10 + rem;
 
             // We "reduce" our number by dividing it by 10
             // Example: 123 / 10 yields 12, then 1 etc.
-            x = x / 10;
-
             // Decrease the power counter
             powerCtr--;
         }
