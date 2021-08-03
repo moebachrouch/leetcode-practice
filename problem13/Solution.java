@@ -23,17 +23,14 @@ public class Solution {
             char c = s.charAt(i);
             int integer = map.get(c);
 
+            res += integer;
             if (i > 0) {
                 char previousChar = s.charAt(i - 1);
                 int previousInteger = map.get(previousChar);
                 if (integer > previousInteger) {
-                    res += integer - previousInteger;
+                    res -= previousInteger;
                     i--;
-                } else {
-                    res += integer;
-                }
-            } else {
-                res += integer;
+                } 
             }
         }
 
