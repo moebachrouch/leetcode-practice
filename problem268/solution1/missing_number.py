@@ -1,14 +1,11 @@
 # O(nlogn + n) = O(nlogn)
 
 def missing_number(nums):
-    lst = sorted(nums)
-    for i in range(len(lst)):
-        if lst[0] != 0:
-            return 0
-        if lst[len(lst) - 1] != len(lst):
-            return len(lst)
-        if lst[i] != i:
+    nums.sort()
+    for i in range(len(nums)):
+        if nums[i] != i:
             return i
+    return len(nums)
 
 
 print(missing_number([0]))
