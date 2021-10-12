@@ -1,3 +1,5 @@
+# O(n + nlogn) = O(nlogn)
+
 def contains_duplicate(nums):
     lst = sorted(nums)
     for i in range(len(nums) - 1):

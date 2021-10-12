@@ -1,12 +1,10 @@
-# O(n)
+# O(n^2)
 
 def contains_duplicate(nums):
-    contains = set()
-    for num in nums:
-        if num in contains:
-            return True
-        else:
-            contains.add(num)
+    for i in range(len(nums)):
+        for j in range (i + 1, len(nums)):
+            if nums[i] == nums[j]:
+                return True
     return False
 
 

@@ -1,3 +1,5 @@
+# O(n)
+
 def contains_duplicate(nums):
     contains = {}
     for num in nums:
